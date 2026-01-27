@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Text App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>✨ Smart Text App</h1>
+
+    <!-- SUMMARIZER -->
+    <div class="card">
+        <h2>📝 Text Summarizer</h2>
+        <form method="POST">
+            <textarea name="text" placeholder="Enter long text..." required></textarea>
+            <button name="summarize">Summarize</button>
+        </form>
+
+        {% if summary %}
+        <p class="output">{{ summary }} <button onclick="speak('{{ summary }}')">🔊</button></p>
+        {% endif %}
+    </div>
+
+    <!-- DICTIONARY -->
+    <div class="card">
+        <h2>📘 Dictionary</h2>
+        <form method="POST">
+            <input name="word" placeholder="Enter a word" required>
+            <button name="dictionary">Search</button>
+        </form>
+
+        {% if meanings %}
+        <h3>Meaning</h3>
+        <ul>
+            {% for m in meanings %}
+            <li>{{ m }} <button onclick="speak('{{ m }}')">🔊</button></li>
+            {% endfor %}
+        </ul>
+
+        <h3>Synonyms</h3>
+        <p>{{ synonyms|join(", ") }}</p>
+
+        <h3>Antonyms</h3>
+        <p>{{ antonyms|join(", ") }}</p>
+
+        <h3>Examples</h3>
+        <ul>{% for e in examples %}<li>{{ e }}</li>{% endfor %}</ul>
+
+        <h3>Hindi Translation</h3>
+        <p>{{ translation }}</p>
+        {% endif %}
+    </div>
+
+    {% if history %}
+    <div class="card">
+        <h3>Recent Words</h3>
+        <p>{{ history|join(" → ") }}</p>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function speak(text) {
+    if ('speechSynthesis' in window) {
+        let msg = new SpeechSynthesisUtterance(text);
+        msg.lang = 'en-US';
+        window.speechSynthesis.speak(msg);
+    } else {
+        alert("Sorry, your browser does not support speech synthesis.");
+    }
+}
+</script>
+
+</body>
+</html>

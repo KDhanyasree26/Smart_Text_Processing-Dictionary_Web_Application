@@ -1,0 +1,49 @@
+body {
+    background: linear-gradient(120deg, #667eea, #764ba2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    width: 65%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+textarea, input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+button {
+    background: #667eea;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 6px;
+}
+
+button:hover {
+    background: #764ba2;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.output {
+    background: #f2f2f2;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+
